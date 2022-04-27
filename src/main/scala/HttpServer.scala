@@ -1,8 +1,10 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.ServerSocket;
+package scala3httpserver
+
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
+import java.net.ServerSocket
 import scala.util.{Try, Using}
 import scala.concurrent._
 import ExecutionContext.Implicits.global
