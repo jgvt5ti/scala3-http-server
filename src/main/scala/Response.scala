@@ -3,7 +3,7 @@ package scala3httpserver
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 
-enum Status(statusCode: String):
+enum Status(val statusCode: String):
   case Ok extends Status("200 OK")
   case BadRequest extends Status("400 BadRequest")
   case Forbidden extends Status("403 Forbidden")

@@ -5,7 +5,7 @@ import java.io.BufferedReader
 object RequestRegex:
   final val RequestPattern = "(.+) (.+) (.+)".r
 
-class RequestParser:
+object RequestParser:
   import RequestRegex._
   import Request._
   def parse(in: BufferedReader): Request =

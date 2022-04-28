@@ -8,6 +8,8 @@ import java.net.ServerSocket
 import scala.util.{Try, Using}
 import scala.concurrent._
 import ExecutionContext.Implicits.global
+import RequestParser._
+import RequestHandler._
 
 object HttpServer:
   val port = 80
@@ -19,12 +21,11 @@ object HttpServer:
       Future {
         Using(clientSocket) { socket =>
           val in = BufferedReader(InputStreamReader(socket.getInputStream))
-          val out = BufferedWriter(OutputStreamWriter(socket.getOutputStream))
-          val str = in.readLine
-          println(str)
-          out.write("HTTP/1.1 200 OK\r\n")
-          out.write("Content-Type: text/html\r\n\r\n");
-          out.write("<h1>Hello World!!</h1>");
+          val out = socket.getOutputStream
+          val request = RequestParser.parse(in)
+          val response = RequestHandler.handleRequeset(request)
+          val bytes: Array[Byte] = response.toBytes
+          out.write(bytes)
           out.flush
         }
       }
